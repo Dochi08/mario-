@@ -98,3 +98,4 @@ game.onUpdateInterval(100, function () {
     Mario_walk()
     Mario_Jump()
 })
+scene.cameraFollowSprite(mario)
