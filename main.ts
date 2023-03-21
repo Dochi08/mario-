@@ -34,3 +34,5 @@ let luigi = sprites.create(img`
     . . . . . . 8 . . 8 . . . . . .
     . . . . . e e . . e e . . . . .
 `, SpriteKind.Player)
+
+tiles.setCurrentTilemap(tilemap`level1`)
