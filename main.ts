@@ -1,3 +1,27 @@
+/**
+ * I want to make it so it looks like a goomba comes out of the pipe.
+ */
+function Goomba () {
+    goomba = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . e . . . . . . . . 
+        . . . . . . e e e . . . . . . . 
+        . . . . . e f e f e . . . . . . 
+        . . . . e e e e e e e . . . . . 
+        . . . . e 1 e e e 1 e . . . . . 
+        . . . e e e 1 1 1 e e e e . . . 
+        . . . . . d d d d d . . . . . . 
+        . . . . . d d d d d . . . . . . 
+        . . . e e e . . . e e e . . . . 
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(goomba, assets.tile`myTile`)
+}
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
     game.gameOver(true)
 })
@@ -87,7 +111,18 @@ function Use_later () {
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
     game.gameOver(true)
 })
+/**
+ * I want to make it so if you jump on the goomba you kill him but if you touch him from the sides you lose.
+ */
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    if (true) {
+    	
+    } else {
+    	
+    }
+})
 let luigi: Sprite = null
+let goomba: Sprite = null
 let mario: Sprite = null
 mario = sprites.create(img`
     . . . . . 2 2 2 2 2 2 2 . . . . 
@@ -112,6 +147,9 @@ mario.ay = 250
 tiles.setCurrentTilemap(tilemap`level1`)
 tiles.placeOnRandomTile(mario, assets.tile`myTile4`)
 scene.cameraFollowSprite(mario)
+game.onUpdateInterval(5000, function () {
+    Goomba()
+})
 game.onUpdateInterval(100, function () {
 	
 })
