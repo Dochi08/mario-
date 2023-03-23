@@ -21,6 +21,7 @@ function Goomba () {
         . . . e e e . . . e e e . . . . 
         `, SpriteKind.Enemy)
     tiles.placeOnRandomTile(goomba, assets.tile`myTile`)
+    goomba.y += -20
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
     game.gameOver(true)
@@ -147,7 +148,7 @@ mario.ay = 250
 tiles.setCurrentTilemap(tilemap`level1`)
 tiles.placeOnRandomTile(mario, assets.tile`myTile4`)
 scene.cameraFollowSprite(mario)
-game.onUpdateInterval(5000, function () {
+game.onUpdateInterval(2000, function () {
     Goomba()
 })
 game.onUpdateInterval(100, function () {
