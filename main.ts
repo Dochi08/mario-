@@ -84,12 +84,8 @@ function Mario_Jump () {
             . . . . . . . e e . . . . . . . 
             `],
         200,
-        false
+        true
         )
-        animation.stopAnimation(animation.AnimationTypes.All, mario)
-    }
-    if (mario.isHittingTile(CollisionDirection.Bottom)) {
-    	
     }
 }
 function Use_later () {
