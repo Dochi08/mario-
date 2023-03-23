@@ -62,7 +62,7 @@ function Mario_walk () {
     }
 }
 function Mario_Jump () {
-    if (controller.up.isPressed()) {
+    if (controller.A.isPressed()) {
         animation.runImageAnimation(
         mario,
         [img`
@@ -84,10 +84,12 @@ function Mario_Jump () {
             . . . . . . . e e . . . . . . . 
             `],
         200,
-        true
+        false
         )
-    } else {
         animation.stopAnimation(animation.AnimationTypes.All, mario)
+    }
+    if (mario.isHittingTile(CollisionDirection.Bottom)) {
+    	
     }
 }
 function Use_later () {
@@ -134,4 +136,7 @@ tiles.placeOnRandomTile(mario, assets.tile`myTile4`)
 scene.cameraFollowSprite(mario)
 game.onUpdateInterval(5000, function () {
     Goomba()
+})
+game.onUpdateInterval(100, function () {
+    Mario_Jump()
 })
