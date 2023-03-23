@@ -24,39 +24,41 @@ function Goomba () {
     goomba.ay += 150
     goomba.setVelocity(randint(-50, 50), 50)
 }
-scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
-    game.gameOver(true)
-})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (mario.isHittingTile(CollisionDirection.Bottom)) {
         mario.vy = -100
     }
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile3`, function (sprite, location) {
+    game.gameOver(true)
+})
 function Mario_walk () {
-    if (controller.right.isPressed() || controller.left.isPressed()) {
+    if (controller.right.isPressed()) {
         animation.runImageAnimation(
         mario,
         [img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
+            . . . . . 2 2 2 2 2 2 2 . . . . 
+            . . . 2 2 2 2 2 2 2 2 2 . . . . 
+            . . . 2 1 1 2 2 2 2 2 2 . . . . 
+            . . 2 2 2 2 2 2 2 2 2 2 . . . . 
+            . . . . d d d d d d d d . . . . 
+            . . . . d 1 8 d d 8 1 d . . . . 
+            . . . . d d d d d d d d . 1 . . 
+            . . . . . d d d d d d . . 1 . . 
+            . . 2 2 2 2 2 2 2 2 2 2 2 2 . . 
+            . . 2 . . . 5 2 2 5 . . . . . . 
+            . . 1 1 . . 8 2 2 8 . . . . . . 
+            . . . 1 . . 8 8 8 8 . . . . . . 
+            . . . . . . 8 8 8 8 . . . . . . 
+            . . . . . . 8 . . 8 . . . . . . 
+            . . . . . . 8 . . 8 . . . . . . 
+            . . . . . e e . . e e . . . . . 
             `],
         200,
         true
         )
+    } else if (controller.left.isPressed()) {
+    	
     } else {
         animation.stopAnimation(animation.AnimationTypes.All, mario)
     }
@@ -118,6 +120,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         info.changeScoreBy(1)
     } else {
         sprites.destroy(mario)
+        game.gameOver(false)
     }
 })
 let luigi: Sprite = null
@@ -135,4 +138,5 @@ game.onUpdateInterval(5000, function () {
 })
 game.onUpdateInterval(100, function () {
     Mario_Jump()
+    Mario_walk()
 })
